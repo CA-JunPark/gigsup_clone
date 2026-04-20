@@ -43,58 +43,43 @@ export default function HomeScreen() {
 
           {/* Text Overlay - absolute*/}
           <View className="absolute inset-0 flex justify-center items-center px-6">
-            <Text className="text-slate-900 text-4xl font-bold italic text-center">
-              <Text className="text-lime-300 font-bold not-italic">Discover</Text> You
+            <Text className="text-slate-900 text-4xl font-black italic text-center">
+              <Text className="text-lime-300 font-black not-italic">Discover</Text> You
             </Text>
 
             {/* Match to Careers that Fit */}
-            <Text className="text-slate-900 text-4xl font-bold text-center mt-2">
-              <Text className="text-lime-300 font-bold">Match</Text> to Careers that Fit
+            <Text className="text-slate-900 text-4xl font-black text-center mt-2">
+              <Text className="text-lime-300 font-black">Match</Text> to Careers that Fit
             </Text>
 
             {/* Achieve Your Career Advantage */}
-            <Text className="text-slate-900 text-4xl font-bold italic text-center mt-2">
-              <Text className="text-lime-300 font-bold not-italic">Achieve</Text> Your Career Advantage
+            <Text className="text-slate-900 text-4xl font-black italic text-center mt-2">
+              <Text className="text-lime-300 font-black not-italic">Achieve</Text> Your Career Advantage
             </Text>
           </View>
         </View>
 
         {/* Network Section */}
         <View className="px-6 py-12 items-center">
-          <View className="bg-blue-50 px-4 py-1 rounded-full mb-4">
-            <Text className="text-blue-600 text-xs font-bold uppercase">The #1 Career Intelligence Network</Text>
+          <View className="bg-lime-300 px-1 py-1 min-w-[300px] rounded-full mb-4 items-center justify-center self-center">
+            <Text className="text-slate-900 text-[11px] font-black uppercase tracking-[0.2em]" numberOfLines={1}>
+              The #1 Career Intelligence Network
+            </Text>
           </View>
-          <Text className="text-2xl font-bold text-center mb-4">Unlock Your Potential in a Changing World of Work</Text>
-          <Text className="text-gray-500 text-center leading-6 mb-8">
-            Gigsup helps you uncover your strengths, connect them to careers that fit, and take focused action with clarity.
+          <Text className="text-2xl font-bold text-center text-black mb-4">Unlock Your Potential in a Changing World of Work</Text>
+          <Text className="text-gray-400 text-center text-black leading-6 mb-8">
+            From high school to your first post-University
+            job to your next career move, Gigsup helps
+            you uncover your strengths, connect them
+            to careers that fit, and take focused action
+            with clarity and advantage - through a
+            personalized job, mentor, and education
+            plan.
           </Text>
-          <TouchableOpacity className="bg-blue-600 px-8 py-4 rounded-xl flex-row items-center active:opacity-80">
-            <Text className="text-white font-bold mr-2 text-lg uppercase">Join for Free</Text>
-            <ArrowRight size={20} color="white" />
+          <TouchableOpacity className="bg-lime-300 px-8 py-4 rounded-xl flex-row items-center active:opacity-80">
+            <Text className="text-slate-900 font-black mr-2 text-lg uppercase">Join for Free</Text>
+            <ArrowRight size={20} color="#000000" />
           </TouchableOpacity>
-        </View>
-
-        {/* How It Works Section */}
-        <View className="px-6 py-12 bg-gray-50">
-          <Text className="text-blue-600 font-bold text-center mb-2 uppercase tracking-widest">How It Works</Text>
-          <Text className="text-3xl font-bold text-center mb-10">Three steps to career clarity</Text>
-
-          {/* Step cards using the same logic as the original HTML */}
-          {[
-            { id: '01', title: 'DISCOVER', sub: 'Understand who you are', icon: Search, desc: 'Upload your transcript or resume. We analyze your skills to build your unique profile.' },
-            { id: '02', title: 'MATCH', sub: 'Find & Explore careers that fit you', icon: Target, desc: 'Get matched with careers based on your unique profile and see paths.' }
-          ].map((step, idx) => (
-            <View key={idx} className="bg-white p-6 rounded-2xl mb-6 shadow-sm">
-              <View className="flex-row items-center mb-4">
-                <View className="bg-blue-100 p-2 rounded-lg mr-3">
-                  <step.icon size={24} color="#2563eb" />
-                </View>
-                <Text className="text-xl font-bold">{step.id} {step.title}</Text>
-              </View>
-              <Text className="text-blue-600 font-semibold mb-2">{step.sub}</Text>
-              <Text className="text-gray-500 leading-5">{step.desc}</Text>
-            </View>
-          ))}
         </View>
 
         {/* Pricing Section */}
