@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useVideoPlayer, VideoView } from 'expo-video';
@@ -12,6 +12,38 @@ export default function HomeScreen() {
     player.muted = true;
     player.play();
   });
+
+  // Path Finding
+  const [activeTab, setActiveTab] = useState('High School');
+
+  const paths = [
+    {
+      id: 'High School',
+      icon: '🎓',
+      title: "I'm in High School",
+      badge: "EXPLORE WHAT'S POSSIBLE",
+      desc: "Discover who you are and plan where you're going. Build a post-secondary admission & career plan aligned to your strengths.",
+      cta: "Get Your Post-Secondary Admission Plan",
+    },
+    {
+      id: 'University',
+      icon: '📚',
+      title: "I'm in Uni / College",
+      badge: "LAND YOUR FIRST ROLE",
+      desc: "Discover your edge. Match your degree to opportunity. See the career paths your major unlocks & identify co-ops / internships to help you standout.",
+      cta: "Discover the Top 5 Career Matches for Your Degree",
+    },
+    {
+      id: 'Mid-Career',
+      icon: '🚀',
+      title: "I'm Mid-Career",
+      badge: "OWN YOUR NEXT CHAPTER",
+      desc: "Rediscover your strengths. Rematch your path. Get a personalized edication plan, methor match & strategic job postings just for you.",
+      cta: "Get Your Personalized Career Plan",
+    }
+  ];
+
+  const currentPath = paths.find(p => p.id === activeTab) || paths[0];
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -80,6 +112,59 @@ export default function HomeScreen() {
             <Text className="text-slate-900 font-black mr-2 text-lg uppercase">Join for Free</Text>
             <ArrowRight size={20} color="#000000" />
           </TouchableOpacity>
+        </View>
+
+        {/* Path Finding Section */}
+        <View className="px-6 py-12 items-center">
+          <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
+            <Text className="text-slate-900 text-[11px] font-black uppercase tracking-[0.23em]" numberOfLines={1}>
+              BUILT FOR YOU
+            </Text>
+          </View>
+          <Text className="text-2xl font-bold text-center text-black mb-4">Where are you on your journey?</Text>
+          {paths.map((path, index) => (
+            <TouchableOpacity
+              key={path.id}
+              onPress={() => setActiveTab(path.id)}
+              className={`bg-white rounded-[16px] w-full p-5 shadow-sm border ${activeTab === path.id ? 'border-lime-400' : 'border-gray-100'}`}
+            >
+              {/* Number & Icon Row */}
+              <View className="flex-row items-center justify-left">
+                <Text className="text-2xl mr-2">{path.icon}</Text>
+                <Text className="text-slate-900 font-black text-xl">
+                  {path.id}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+
+          <View
+            className={`bg-white rounded-[16px] w-full h-[450px] p-5 shadow-sm border border-gray-100`}
+          >
+            <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 self-start">
+              <Text className="text-slate-900 text-[11px] font-black uppercase " numberOfLines={1}>
+                {currentPath.badge}
+              </Text>
+            </View>
+            <Text className="text-slate-900 font-black text-2xl mb-4">
+              {currentPath.title}
+            </Text>
+            <Text
+              numberOfLines={4}
+              style={{ minHeight: 90 }}
+              className="text-gray-400 font-black text-base mb-6 leading-6"
+            >
+              {currentPath.desc}
+            </Text>
+            <TouchableOpacity className="bg-lime-300 px-8 py-4 rounded-xl flex-row items-center active:opacity-80">
+              <Text className="text-slate-900 font-black mr-2 text-lg">{currentPath.cta}</Text>
+              <ArrowRight size={20} color="#000000" />
+            </TouchableOpacity>
+            {/* Floating animation is not applied */}
+            <Text className="leading-none text-7xl text-center w-full mt-12 mb-12">
+              {currentPath.icon}
+            </Text>
+          </View>
         </View>
 
         {/* Pricing Section */}
