@@ -28,7 +28,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Hero Section */}
+        {/* Entry Video Section */}
         <View style={styles.entryVideoContainer}>
           {/* Background Video */}
           <VideoView
@@ -44,17 +44,17 @@ export default function HomeScreen() {
           {/* Text Overlay - absolute*/}
           <View className="absolute inset-0 flex justify-center items-center px-6">
             <Text className="text-slate-900 text-4xl font-bold italic text-center">
-              <Text className="text-lime-400 font-bold not-italic">Discover</Text> You
+              <Text className="text-lime-300 font-bold not-italic">Discover</Text> You
             </Text>
 
             {/* Match to Careers that Fit */}
             <Text className="text-slate-900 text-4xl font-bold text-center mt-2">
-              <Text className="text-lime-400 font-bold">Match</Text> to Careers that Fit
+              <Text className="text-lime-300 font-bold">Match</Text> to Careers that Fit
             </Text>
 
             {/* Achieve Your Career Advantage */}
             <Text className="text-slate-900 text-4xl font-bold italic text-center mt-2">
-              <Text className="text-lime-400 font-bold not-italic">Achieve</Text> Your Career Advantage
+              <Text className="text-lime-300 font-bold not-italic">Achieve</Text> Your Career Advantage
             </Text>
           </View>
         </View>
