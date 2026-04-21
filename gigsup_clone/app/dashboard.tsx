@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Menu } from 'lucide-react-native';
-import MenuModal from '../components/modalMenu';
+import DashboardMenuModal from '../components/dashboardMenuModal';
 
 export default function DashboardScreen() {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
 
     return (
         <SafeAreaView className="flex-1 bg-white" edges={['top']}>
-
+            <DashboardMenuModal
+                isVisible={isMenuVisible}
+                onClose={() => setIsMenuVisible(false)}
+            />
             {/* Navigation Bar */}
             <View className="px-2 py-4 flex-row justify-between items-center border-b border-gray-100 bg-black">
                 <Image
