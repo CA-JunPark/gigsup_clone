@@ -167,6 +167,40 @@ export default function HomeScreen() {
           </View>
         </View>
 
+        {/* Stats Section */}
+        <View className="bg-white px-6 py-20 border-t border-b border-gray-100 ml-4">
+          <View className="flex-row items-center justify-center">
+            <View className="bg-lime-300 px-1 py-1 rounded-[4px] items-center justify-center self-center ml-2">
+              <Text className="text-slate-900 text-[30px] font-black uppercase" numberOfLines={1}>
+                1,000
+              </Text>
+            </View>
+            <Text className="text-[32px] mr-5">+</Text>
+            <View className="bg-lime-300 px-1 py-1 rounded-[4px] items-center justify-center self-center">
+              <Text className="text-slate-900 text-[30px] font-black uppercase" numberOfLines={1}>
+                40,000
+              </Text>
+            </View>
+            <Text className="text-[32px]">+</Text>
+          </View>
+          <View className="self-center pr-9">
+            <Text className="text-gray-400 text-[12px] font-black uppercase" numberOfLines={1}>CAREER PROFILES              JOB TITLES</Text>
+            {/* <Text className="text-gray-400 text-[12px] font-black uppercase" numberOfLines={1}></Text> */}
+          </View>
+
+          <View className="flex-row items-center justify-center ml-12">
+            <View className="bg-lime-300 px-1 py-1 rounded-[4px] self-center">
+              <Text className="text-slate-900 text-[30px] font-black uppercase " numberOfLines={1}>
+                1,000
+              </Text>
+            </View>
+            <Text className="text-[32px] mr-10">+</Text>
+          </View>
+          <View className="self-center mr-4">
+            <Text className="text-gray-400 text-[12px] font-black uppercase" numberOfLines={1}>MEMBERS</Text>
+          </View>
+        </View>
+
         {/* Pricing Section */}
         <View className="px-6 py-16">
           <Text className="text-3xl font-bold text-center mb-10">Choose your career plan</Text>
