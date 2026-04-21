@@ -5,10 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface MenuModalProps {
     isVisible: boolean;
+    onLoginPress: () => void;
     onClose: () => void;
 }
 
-const MenuModal = ({ isVisible, onClose }: MenuModalProps) => {
+const MenuModal = ({ isVisible, onLoginPress, onClose }: MenuModalProps) => {
     return (
         <Modal
             visible={isVisible}
@@ -67,7 +68,8 @@ const MenuModal = ({ isVisible, onClose }: MenuModalProps) => {
                     <View className="w-full h-[1px] bg-gray-800 mb-10" />
 
                     {/* Auth Buttons */}
-                    <TouchableOpacity className="w-full border border-gray-600 py-5 rounded-2xl items-center mb-4">
+                    <TouchableOpacity className="w-full border border-gray-600 py-5 rounded-2xl items-center mb-4"
+                        onPress={onLoginPress}>
                         <Text className="text-white text-lg font-black">Login</Text>
                     </TouchableOpacity>
 

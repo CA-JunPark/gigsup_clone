@@ -4,12 +4,22 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { Menu, Check, ArrowRight } from 'lucide-react-native';
 import MenuModal from '../components/modalMenu';
+import LoginModal from '../components/loginModal';
 
 const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   // Menu Modal
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+  // Login
+  const [isLoginVisible, setIsLoginVisible] = useState(false);
+  const handleLoginPress = () => {
+    setIsMenuVisible(false);
+    setTimeout(() => {
+      setIsLoginVisible(true);
+    }, 300);
+  };
 
   // Entry Video
   const videoSource = require('../assets/gigsup_resources/hero-video.mp4');
@@ -253,7 +263,12 @@ export default function HomeScreen() {
     <SafeAreaView className="flex-1 bg-white">
       <MenuModal
         isVisible={isMenuVisible}
+        onLoginPress={handleLoginPress}
         onClose={() => setIsMenuVisible(false)}
+      />
+      <LoginModal
+        isVisible={isLoginVisible}
+        onClose={() => setIsLoginVisible(false)}
       />
       <ScrollView ref={scrollRef} className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Navigation Bar */}
