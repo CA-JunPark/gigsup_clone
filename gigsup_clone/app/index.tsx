@@ -45,6 +45,31 @@ export default function HomeScreen() {
 
   const currentPath = paths.find(p => p.id === activeTab) || paths[0];
 
+  // Career Clarity steps
+  const steps = [
+    {
+      id: "01",
+      icon: "🔍",
+      title: "DISCOVER",
+      summary: "Understand who you are",
+      desc: "Upload your transcript or resume or LinkedIn profile or journal or complete our VISI assessment. We analyze your skills, interests, personality & values to build your unique profile.",
+    },
+    {
+      id: "02",
+      icon: "🎯",
+      title: "MATCH",
+      summary: "Find & Explore careers that fit you",
+      desc: "Get matched with careers based on your unique profile. See skills required, supply & demand by region, compensation, education & growth paths.",
+    },
+    {
+      id: "03",
+      icon: "⚡",
+      title: "ACHIEVE",
+      summary: "Close the gap & get your career advantage",
+      desc: "See your custom education plan to close all your skill gaps, match with a mentor, and receive curated job postings.",
+    }
+  ]
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
@@ -185,7 +210,6 @@ export default function HomeScreen() {
           </View>
           <View className="self-center pr-9">
             <Text className="text-gray-400 text-[12px] font-black uppercase" numberOfLines={1}>CAREER PROFILES              JOB TITLES</Text>
-            {/* <Text className="text-gray-400 text-[12px] font-black uppercase" numberOfLines={1}></Text> */}
           </View>
 
           <View className="flex-row items-center justify-center ml-12">
@@ -200,6 +224,33 @@ export default function HomeScreen() {
             <Text className="text-gray-400 text-[12px] font-black uppercase" numberOfLines={1}>MEMBERS</Text>
           </View>
         </View>
+
+        {/* Clarity steps section */}
+        <View className="px-6 py-16">
+          <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
+            <Text className="text-slate-900 text-[11px] font-black uppercase" numberOfLines={1}>
+              HOW IT WORKS
+            </Text>
+          </View>
+        </View>
+        {steps.map((step, index) => (
+          <View
+            key={step.id}
+            className={`bg-white rounded-[16px] p-5 shadow-sm mr-5 ml-5 mb-4 border border-gray-100`}
+          >
+            <View className="flex-row items-center justify-center self-start">
+              <View className="bg-lime-300 px-1 py-1 h-[50px] rounded-full mb-4 mr-2 items-center justify-center self-center">
+                <Text className="text-slate-900 text-[20px] font-black uppercase" numberOfLines={1}>
+                  {step.icon}
+                </Text>
+              </View>
+              <Text className="text-2xl font-bold text-center text-black mb-4">{step.id}</Text>
+            </View>
+            <Text className="text-2xl font-bold text-left text-black mb-4">{step.title}</Text>
+            <Text className="text-gray-600 text-xl font-bold italic text-left mb-4">{step.summary}</Text>
+            <Text className="text-gray-400 text-lg font-normal text-left mb-4">{step.desc}</Text>
+          </View>
+        ))}
 
         {/* Pricing Section */}
         <View className="px-6 py-16">
