@@ -110,6 +110,40 @@ export default function HomeScreen() {
   const [width2, setWidth2] = useState(0);
   const [width3, setWidth3] = useState(0);
 
+  const LogoCard = ({ item }: { item: any }) => (
+    <View className="bg-white border border-gray-100 px-4 py-2 rounded-2xl flex-row items-center mx-2 shadow-sm">
+      <Image source={item.source} className="w-6 h-6 mr-2" resizeMode="contain" />
+      <Text className="text-gray-600 font-bold text-[14px]">{item.name}</Text>
+    </View>
+  );
+
+  // Employers
+  const employerRow = [
+    { name: 'Air Canada', source: require('../assets/gigsup_resources/logos/employers/aircanada.png') },
+    { name: 'BC Hydro', source: require('../assets/gigsup_resources/logos/employers/bchydro.png') },
+    { name: 'BlackBerry', source: require('../assets/gigsup_resources/logos/employers/blackberry.png') },
+    { name: 'BMO', source: require('../assets/gigsup_resources/logos/employers/bmo.png') },
+    { name: 'Canadian Tire', source: require('../assets/gigsup_resources/logos/employers/canadiantirecorp.png') },
+    { name: 'CIBC', source: require('../assets/gigsup_resources/logos/employers/cibc.png') },
+    { name: 'Desjardins', source: require('../assets/gigsup_resources/logos/employers/desjardins.png') },
+    { name: 'Enbridge', source: require('../assets/gigsup_resources/logos/employers/enbridge.png') },
+    { name: 'Loblaw', source: require('../assets/gigsup_resources/logos/employers/loblaw.png') },
+    { name: 'Lululemon', source: require('../assets/gigsup_resources/logos/employers/lululemon.png') },
+    { name: 'Manulife', source: require('../assets/gigsup_resources/logos/employers/manulife.png') },
+    { name: 'Maple Leaf', source: require('../assets/gigsup_resources/logos/employers/mapleleaf.png') },
+    { name: 'OpenText', source: require('../assets/gigsup_resources/logos/employers/opentext.png') },
+    { name: 'RBC', source: require('../assets/gigsup_resources/logos/employers/rbc.png') },
+    { name: 'Rogers', source: require('../assets/gigsup_resources/logos/employers/rogers.png') },
+    { name: 'Scotiabank', source: require('../assets/gigsup_resources/logos/employers/scotiabank.png') },
+    { name: 'Shopify', source: require('../assets/gigsup_resources/logos/employers/shopify.png') },
+    { name: 'Sun Life', source: require('../assets/gigsup_resources/logos/employers/sunlife.png') },
+    { name: 'TD', source: require('../assets/gigsup_resources/logos/employers/td.png') },
+    { name: 'Telus', source: require('../assets/gigsup_resources/logos/employers/telus.png') },
+  ];
+
+  const scrollXEmployer = useRef(new Animated.Value(0)).current;
+  const [widthEmployer, setWidthEmployer] = useState(0);
+
   useEffect(() => {
     const startAnim = (value: Animated.Value, toValue: number, duration: number) => {
       value.setValue(0);
@@ -126,14 +160,10 @@ export default function HomeScreen() {
     if (width1 > 0) startAnim(scrollX1, -width1, 25000);
     if (width2 > 0) startAnim(scrollX2, width2, 25000);
     if (width3 > 0) startAnim(scrollX3, -width3, 25000);
-  }, [width1, width2, width3]);
+    if (widthEmployer > 0) startAnim(scrollXEmployer, widthEmployer, 25000);
+  }, [width1, width2, width3, widthEmployer]);
 
-  const LogoCard = ({ item }: { item: any }) => (
-    <View className="bg-white border border-gray-100 px-4 py-2 rounded-2xl flex-row items-center mx-2 shadow-sm">
-      <Image source={item.source} className="w-6 h-6 mr-2" resizeMode="contain" />
-      <Text className="text-gray-600 font-bold text-[14px]">{item.name}</Text>
-    </View>
-  );
+
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -359,7 +389,7 @@ export default function HomeScreen() {
               {row1.map((item, i) => <LogoCard key={`c1-${i}`} item={item} />)}
             </Animated.View>
 
-            {/* Row 2 */}
+            {/* Row 2 (backward) */}
             <Animated.View
               style={{
                 transform: [{ translateX: scrollX2 }],
@@ -384,6 +414,8 @@ export default function HomeScreen() {
         </View>
 
         {/* Network section */}
+
+        {/* Employer section */}
         <View className="px-6 py-16">
           <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
             <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
@@ -392,6 +424,18 @@ export default function HomeScreen() {
           </View>
           <Text className="text-2xl font-black text-center text-black mb-4">Leading employers across Canada</Text>
 
+          <Animated.View
+            style={{
+              transform: [{ translateX: scrollXEmployer }],
+              marginLeft: -widthEmployer
+            }}
+            className="flex-row"
+          >
+            <View className="flex-row" onLayout={(e) => setWidthEmployer(e.nativeEvent.layout.width)}>
+              {employerRow.map((item, i) => <LogoCard key={i} item={item} />)}
+            </View>
+            {employerRow.map((item, i) => <LogoCard key={`ce-${i}`} item={item} />)}
+          </Animated.View>
         </View>
 
         {/* Whos It's For section */}
