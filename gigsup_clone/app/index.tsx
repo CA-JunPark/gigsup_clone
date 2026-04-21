@@ -191,8 +191,8 @@ export default function HomeScreen() {
     require('../assets/gigsup_resources/images.unsplash.com/24.jpg'),
   ];
 
-  // Targer Audiences
-  const targets = [
+  // Benefits
+  const benefits = [
     {
       id: "High School",
       icon: "🎓",
@@ -221,6 +221,17 @@ export default function HomeScreen() {
 
   // Pricing
   const [billingCycle, setBillingCycle] = useState('Monthly');
+
+  // Partners
+  const partners = [
+    { name: 'Accelerate Okanagan', source: require('../assets/gigsup_resources/logos/partners/accelerate.png') },
+    { name: 'Spring', source: require('../assets/gigsup_resources/logos/partners/spring.png') },
+    { name: 'Movement 51', source: require('../assets/gigsup_resources/logos/partners/m51.webp') },
+    { name: 'NVIDIA Inc', source: require('../assets/gigsup_resources/logos/partners/nvidia.png') },
+    { name: 'Mitacs', source: require('../assets/gigsup_resources/logos/partners/mitacs.png') },
+    { name: 'NRC IRAP', source: require('../assets/gigsup_resources/logos/partners/nrcirap.png') },
+    { name: 'Venture To Assets', source: require('../assets/gigsup_resources/logos/partners/vta.png') },
+  ];
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -537,7 +548,7 @@ export default function HomeScreen() {
           </Animated.View>
         </View>
 
-        {/* Target Audience Section */}
+        {/* Benefits Section */}
         <View className="px-6 py-16">
           <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
             <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
@@ -545,31 +556,31 @@ export default function HomeScreen() {
             </Text>
           </View>
           <Text className="text-2xl font-black text-center text-black mb-4">Built for every stage of your journey</Text>
-          {targets.map((target, i) => (
+          {benefits.map((benefit, i) => (
             <View
               key={i}
               className={`bg-white rounded-[16px] w-full p-5 shadow-sm border border-gray-100`}
             >
               <View className="px-4 py-1 min-w-[120px] rounded-full mb-4 self-start">
                 <Text className="text-slate-900 text-[30px] font-black uppercase " numberOfLines={1}>
-                  {target.icon}
+                  {benefit.icon}
                 </Text>
               </View>
               <Text className="text-slate-900 font-black text-2xl mb-4">
-                {target.id}
+                {benefit.id}
               </Text>
               <Text className="bg-lime-300 text-slate-900 rounded-[4px] px-2 py-1 font-black text-lg mb-4">
-                {target.summary}
+                {benefit.summary}
               </Text>
               <Text
                 numberOfLines={4}
                 style={{ minHeight: 90 }}
                 className="text-gray-400 font-black text-base leading-6"
               >
-                {target.desc}
+                {benefit.desc}
               </Text>
               <View className="mb-8">
-                {target.points.map((point, index) => (
+                {benefit.points.map((point, index) => (
                   <View key={index} className="flex-row items-center mb-3">
                     <View className="w-1.5 h-1.5 rounded-full bg-lime-400 mr-3" />
                     <Text className="text-gray-500 font-medium text-base">
@@ -579,7 +590,7 @@ export default function HomeScreen() {
                 ))}
               </View>
               <TouchableOpacity className="bg-lime-300 px-6 py-4 rounded-xl flex-row items-center active:opacity-80">
-                <Text className="text-slate-900 font-black mr-2 text-lg">{target.find}</Text>
+                <Text className="text-slate-900 font-black mr-2 text-lg">{benefit.find}</Text>
                 <ArrowRight size={20} color="#000000" />
               </TouchableOpacity>
             </View>
@@ -763,7 +774,22 @@ export default function HomeScreen() {
             </Text>
           </View>
           <Text className="text-2xl font-black text-center text-black mb-4">Supported By</Text>
-
+          <View className="flex-row flex-wrap justify-center items-start">
+            {partners.map((partner, i) => (
+              <View key={i} className="items-center justify-center w-1/2 mb-10 px-2">
+                <View className="w-20 h-20 rounded-full bg-white shadow-sm border border-gray-50 items-center justify-center mb-3">
+                  <Image
+                    source={partner.source}
+                    className="w-12 h-12"
+                    resizeMode="contain"
+                  />
+                </View>
+                <Text className="text-slate-600 font-bold text-[13px] text-center px-2">
+                  {partner.name}
+                </Text>
+              </View>
+            ))}
+          </View>
         </View>
 
         {/* Footer */}
