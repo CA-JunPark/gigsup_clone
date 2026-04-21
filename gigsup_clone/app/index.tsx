@@ -233,9 +233,21 @@ export default function HomeScreen() {
     { name: 'Venture To Assets', source: require('../assets/gigsup_resources/logos/partners/vta.png') },
   ];
 
+  // Scroll
+  const scrollRef = useRef<ScrollView>(null);
+  const [layoutClarity, setLayoutClarity] = useState(0);
+  const [layoutBenefit, setLayoutBenefit] = useState(0);
+
+  const scrollToSection = (yValue: number) => {
+    scrollRef.current?.scrollTo({
+      y: yValue,
+      animated: true,
+    });
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollRef} className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Navigation Bar */}
         <View className="px-2 py-4 flex-row justify-between items-center border-b border-gray-100 bg-black">
           <Image
@@ -389,7 +401,7 @@ export default function HomeScreen() {
         </View>
 
         {/* Clarity steps section */}
-        <View className="px-6 py-16">
+        <View className="px-6 py-16" onLayout={(e) => setLayoutClarity(e.nativeEvent.layout.y)}>
           <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
             <Text className="text-slate-900 text-[11px] font-black uppercase" numberOfLines={1}>
               HOW IT WORKS
@@ -549,7 +561,7 @@ export default function HomeScreen() {
         </View>
 
         {/* Benefits Section */}
-        <View className="px-6 py-16">
+        <View className="px-6 py-16" onLayout={(e) => setLayoutBenefit(e.nativeEvent.layout.y)}>
           <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
             <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
               WHO IT'S FOR
@@ -792,6 +804,26 @@ export default function HomeScreen() {
           </View>
         </View>
 
+        {/* Quick Navigation */}
+        <View className="bg-black py-8 border-b border-gray-800">
+          <View className="flex-row justify-center items-center space-x-6">
+            <TouchableOpacity onPress={() => scrollToSection(layoutClarity)}>
+              <Text className="text-gray-400 font-bold text-base mr-5">How it works</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => scrollToSection(layoutBenefit)}>
+              <Text className="text-gray-400 font-bold text-base mr-5">Benefits</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Text className="text-gray-400 font-bold text-base mr-5">About</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Text className="text-gray-400 font-bold text-base">FAQ</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
         {/* Footer */}
         <View className="px-6 py-12 bg-gray-900 items-center">
           <Text className="text-white opacity-60 text-center mb-6">© 2026 Gigsup. All Rights Reserved.</Text>
