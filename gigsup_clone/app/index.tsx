@@ -2,11 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet, Animated, Dimensions, Easing } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useVideoPlayer, VideoView } from 'expo-video';
-import { Menu, Check, ArrowRight, Search, Target } from 'lucide-react-native';
+import { Menu, Check, ArrowRight } from 'lucide-react-native';
+import MenuModal from '../components/modalMenu';
 
 const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
+  // Menu Modal
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+
   // Entry Video
   const videoSource = require('../assets/gigsup_resources/hero-video.mp4');
   const player = useVideoPlayer(videoSource, (player) => {
@@ -247,6 +251,10 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
+      <MenuModal
+        isVisible={isMenuVisible}
+        onClose={() => setIsMenuVisible(false)}
+      />
       <ScrollView ref={scrollRef} className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Navigation Bar */}
         <View className="px-2 py-4 flex-row justify-between items-center border-b border-gray-100 bg-black">
@@ -255,7 +263,7 @@ export default function HomeScreen() {
             style={{ width: 100, height: 30 }}
             resizeMode="contain"
           />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setIsMenuVisible(true)}>
             <Menu size={24} color="#ffffffff" />
           </TouchableOpacity>
         </View>
