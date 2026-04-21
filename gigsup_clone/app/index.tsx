@@ -336,6 +336,17 @@ export default function HomeScreen() {
           </View>
         </View>
 
+        {/* Partners section */}
+        <View className="px-6 py-16">
+          <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
+            <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
+              OUR PARTNERS
+            </Text>
+          </View>
+          <Text className="text-2xl font-black text-center text-black mb-4">Supported By</Text>
+
+        </View>
+
         {/* Footer */}
         <View className="px-6 py-12 bg-gray-900 items-center">
           <Text className="text-white opacity-60 text-center mb-6">© 2026 Gigsup. All Rights Reserved.</Text>
