@@ -7,11 +7,10 @@ import { useRouter } from 'expo-router';
 interface DashboardMenuModalProps {
     isVisible: boolean;
     onClose: () => void;
+    router: any;
 }
 
-const DashboardMenuModal = ({ isVisible, onClose }: DashboardMenuModalProps) => {
-    const router = useRouter();
-
+const DashboardMenuModal = ({ isVisible, onClose, router }: DashboardMenuModalProps) => {
     const handleLogout = () => {
         onClose();
         setTimeout(() => {
