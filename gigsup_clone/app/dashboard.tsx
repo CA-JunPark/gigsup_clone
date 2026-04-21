@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, Image, TouchableOpacity, ScrollView, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Menu, Check, Lock, Search } from 'lucide-react-native';
+import { Menu, Check, Lock, Search, LayoutGrid, Briefcase, GraduationCap, Users, Bookmark, ShieldCheck, ChevronRight, Flag } from 'lucide-react-native';
 import DashboardMenuModal from '../components/dashboardMenuModal';
+import { Svg, Polygon, Line } from 'react-native-svg';
 
 export default function DashboardScreen() {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -13,18 +14,18 @@ export default function DashboardScreen() {
                 isVisible={isMenuVisible}
                 onClose={() => setIsMenuVisible(false)}
             />
+            {/* Navigation Bar */}
+            <View className="px-2 py-4 flex-row justify-between items-center border-b border-gray-100 bg-black">
+                <Image
+                    source={require('../assets/gigsup_resources/gigsup-logo.png')}
+                    style={{ width: 100, height: 30 }}
+                    resizeMode="contain"
+                />
+                <TouchableOpacity onPress={() => setIsMenuVisible(true)}>
+                    <Menu size={24} color="#ffffffff" />
+                </TouchableOpacity>
+            </View>
             <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-                {/* Navigation Bar */}
-                <View className="px-2 py-4 flex-row justify-between items-center border-b border-gray-100 bg-black">
-                    <Image
-                        source={require('../assets/gigsup_resources/gigsup-logo.png')}
-                        style={{ width: 100, height: 30 }}
-                        resizeMode="contain"
-                    />
-                    <TouchableOpacity onPress={() => setIsMenuVisible(true)}>
-                        <Menu size={24} color="#ffffffff" />
-                    </TouchableOpacity>
-                </View>
                 {/* Welcome Section */}
                 <View className="px-6 pt-10 pb-8 bg-white">
                     <View className="flex-row items-center flex-wrap mb-2">
@@ -130,6 +131,33 @@ export default function DashboardScreen() {
                     </View>
                 </View>
             </ScrollView>
+
+            {/* Bottom Navigation Bar */}
+            <View className="bg-white border-t border-slate-100 px-4 py-3 flex-row justify-between items-center">
+                {[
+                    { name: 'Home', icon: LayoutGrid, active: true },
+                    { name: 'Jobs', icon: Briefcase, active: false },
+                    { name: 'Education', icon: GraduationCap, active: false },
+                    { name: 'Mentors', icon: Users, active: false },
+                    { name: 'Saved', icon: Bookmark, active: false },
+                ].map((item, i) => (
+                    <TouchableOpacity
+                        key={i}
+                        className={`items-center justify-center px-4 py-2 rounded-2xl ${item.active ? 'bg-lime-50' : ''}`}
+                    >
+                        <item.icon
+                            size={24}
+                            color={item.active ? '#1E293B' : '#94A3B8'}
+                            strokeWidth={item.active ? 2.5 : 2}
+                        />
+                        <Text
+                            className={`text-[11px] mt-1 font-bold ${item.active ? 'text-slate-800' : 'text-slate-400'}`}
+                        >
+                            {item.name}
+                        </Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
         </SafeAreaView >
     );
 }
