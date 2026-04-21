@@ -51,6 +51,22 @@ const LoginModal = ({ isVisible, onClose }: LoginModalProps) => {
         }
     };
 
+    const handleGoogleLogin = () => {
+        onClose();
+
+        setTimeout(() => {
+            router.replace('/dashboard');
+        }, 100);
+    };
+
+    const handleLinkedInLogin = () => {
+        onClose();
+
+        setTimeout(() => {
+            router.replace('/dashboard');
+        }, 100);
+    };
+
     return (
         <Modal visible={isVisible} animationType="fade" transparent={true}>
             <View className="flex-1 justify-center items-center bg-black/60 px-6">
@@ -71,13 +87,17 @@ const LoginModal = ({ isVisible, onClose }: LoginModalProps) => {
                     )}
 
                     {/* Google*/}
-                    <TouchableOpacity className="w-full border border-slate-200 py-4 rounded-xl flex-row items-center justify-center mb-4">
+                    <TouchableOpacity
+                        className="w-full border border-slate-200 py-4 rounded-xl flex-row items-center justify-center mb-4"
+                        onPress={handleGoogleLogin}>
                         <Image source={require('../assets/gigsup_resources/google.png')} className="w-5 h-5 mr-3" />
                         <Text className="text-slate-700 font-bold text-lg">Sign in with Google</Text>
                     </TouchableOpacity>
 
                     {/* LinkedIn */}
-                    <TouchableOpacity className="w-full border border-slate-200 py-4 rounded-xl flex-row items-center justify-center mb-4">
+                    <TouchableOpacity
+                        className="w-full border border-slate-200 py-4 rounded-xl flex-row items-center justify-center mb-4"
+                        onPress={handleLinkedInLogin}>
                         <Image source={require('../assets/gigsup_resources/linkedin.png')} className="w-5 h-5 mr-3" />
                         <Text className="text-slate-700 font-bold text-lg">Sign in with LinkedIn</Text>
                     </TouchableOpacity>
