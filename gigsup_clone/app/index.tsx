@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet, Animated, Dimensions, Easing } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { Menu, Check, ArrowRight, Search, Target } from 'lucide-react-native';
+
+const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   // Entry Video
@@ -69,6 +71,69 @@ export default function HomeScreen() {
       desc: "See your custom education plan to close all your skill gaps, match with a mentor, and receive curated job postings.",
     }
   ]
+
+  // universities
+  const row1 = [
+    { name: 'University of Waterloo', source: require('../assets/gigsup_resources/logos/universities/waterloo.png') },
+    { name: 'Queen\'s University', source: require('../assets/gigsup_resources/logos/universities/queens.png') },
+    { name: 'Western University', source: require('../assets/gigsup_resources/logos/universities/western.png') },
+    { name: 'University of Alberta', source: require('../assets/gigsup_resources/logos/universities/uofa.png') },
+    { name: 'University of Toronto', source: require('../assets/gigsup_resources/logos/universities/uoft.png') },
+    { name: 'UBC', source: require('../assets/gigsup_resources/logos/universities/ubc.png') },
+    { name: 'MacGill University', source: require('../assets/gigsup_resources/logos/universities/mcgill.png') },
+    { name: 'University of Alberta', source: require('../assets/gigsup_resources/logos/universities/uofa.png') },
+  ];
+  const row2 = [
+    { name: 'University of Victoria', source: require('../assets/gigsup_resources/logos/universities/uvic.png') },
+    { name: 'York University', source: require('../assets/gigsup_resources/logos/universities/york.png') },
+    { name: 'Dalhousie University', source: require('../assets/gigsup_resources/logos/universities/dal.png') },
+    { name: 'University of Calgary', source: require('../assets/gigsup_resources/logos/universities/ucalgary.png') },
+    { name: 'SFU', source: require('../assets/gigsup_resources/logos/universities/sfu.png') },
+    { name: 'Toronto Metropolitan', source: require('../assets/gigsup_resources/logos/universities/tmu.png') },
+    { name: 'University of Ottawa', source: require('../assets/gigsup_resources/logos/universities/uottawa.png') },
+  ];
+  const row3 = [
+    { name: 'Capilano University', source: require('../assets/gigsup_resources/logos/universities/capu.png') },
+    { name: 'Langara College', source: require('../assets/gigsup_resources/logos/universities/langara.png') },
+    { name: 'Douglas College', source: require('../assets/gigsup_resources/logos/universities/douglas.png') },
+    { name: 'BCIT', source: require('../assets/gigsup_resources/logos/universities/bcit.png') },
+    { name: 'UCW', source: require('../assets/gigsup_resources/logos/universities/ucw.png') },
+    { name: 'Alexander College', source: require('../assets/gigsup_resources/logos/universities/alexander.png') },
+    { name: 'KPU', source: require('../assets/gigsup_resources/logos/universities/kpu.png') },
+  ];
+
+  const scrollX1 = useRef(new Animated.Value(0)).current;
+  const scrollX2 = useRef(new Animated.Value(0)).current;
+  const scrollX3 = useRef(new Animated.Value(0)).current;
+
+  const [width1, setWidth1] = useState(0);
+  const [width2, setWidth2] = useState(0);
+  const [width3, setWidth3] = useState(0);
+
+  useEffect(() => {
+    const startAnim = (value: Animated.Value, toValue: number, duration: number) => {
+      value.setValue(0);
+      Animated.loop(
+        Animated.timing(value, {
+          toValue: toValue,
+          duration: duration,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        })
+      ).start();
+    };
+
+    if (width1 > 0) startAnim(scrollX1, -width1, 25000);
+    if (width2 > 0) startAnim(scrollX2, width2, 25000);
+    if (width3 > 0) startAnim(scrollX3, -width3, 25000);
+  }, [width1, width2, width3]);
+
+  const LogoCard = ({ item }: { item: any }) => (
+    <View className="bg-white border border-gray-100 px-4 py-2 rounded-2xl flex-row items-center mx-2 shadow-sm">
+      <Image source={item.source} className="w-6 h-6 mr-2" resizeMode="contain" />
+      <Text className="text-gray-600 font-bold text-[14px]">{item.name}</Text>
+    </View>
+  );
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -273,6 +338,49 @@ export default function HomeScreen() {
           </View>
           <Text className="text-2xl font-black text-center text-black mb-4">Empowering students across Canada</Text>
 
+          <View className="px-6 py-16 bg-white overflow-hidden">
+            {/* Badge & Title */}
+            <View className="items-center mb-10">
+              <View className="bg-lime-300 px-4 py-1 rounded-full mb-4">
+                <Text className="text-slate-900 text-[11px] font-black uppercase tracking-[0.2em]">
+                  ACROSS CAMPUSES
+                </Text>
+              </View>
+              <Text className="text-2xl font-black text-center text-black leading-tight">
+                Empowering students across{"\n"}Canada
+              </Text>
+            </View>
+
+            {/* Row 1 */}
+            <Animated.View style={{ transform: [{ translateX: scrollX1 }] }} className="flex-row mb-4">
+              <View className="flex-row" onLayout={(e) => setWidth1(e.nativeEvent.layout.width)}>
+                {row1.map((item, i) => <LogoCard key={i} item={item} />)}
+              </View>
+              {row1.map((item, i) => <LogoCard key={`c1-${i}`} item={item} />)}
+            </Animated.View>
+
+            {/* Row 2 */}
+            <Animated.View
+              style={{
+                transform: [{ translateX: scrollX2 }],
+                marginLeft: -width2
+              }}
+              className="flex-row mb-4"
+            >
+              <View className="flex-row" onLayout={(e) => setWidth2(e.nativeEvent.layout.width)}>
+                {row2.map((item, i) => <LogoCard key={i} item={item} />)}
+              </View>
+              {row2.map((item, i) => <LogoCard key={`c2-${i}`} item={item} />)}
+            </Animated.View>
+
+            {/* Row 3 */}
+            <Animated.View style={{ transform: [{ translateX: scrollX3 }] }} className="flex-row">
+              <View className="flex-row" onLayout={(e) => setWidth3(e.nativeEvent.layout.width)}>
+                {row3.map((item, i) => <LogoCard key={i} item={item} />)}
+              </View>
+              {row3.map((item, i) => <LogoCard key={`c3-${i}`} item={item} />)}
+            </Animated.View>
+          </View>
         </View>
 
         {/* Network section */}
