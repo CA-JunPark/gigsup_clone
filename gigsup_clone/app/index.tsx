@@ -116,7 +116,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* Network Section */}
+        {/* Intro Section */}
         <View className="px-6 py-12 items-center">
           <View className="bg-lime-300 px-1 py-1 min-w-[300px] rounded-full mb-4 items-center justify-center self-center">
             <Text className="text-slate-900 text-[11px] font-black uppercase tracking-[0.2em]" numberOfLines={1}>
@@ -232,6 +232,7 @@ export default function HomeScreen() {
               HOW IT WORKS
             </Text>
           </View>
+          <Text className="text-2xl font-bold text-center text-black mb-4">Three steps to career clarity</Text>
         </View>
         {steps.map((step, index) => (
           <View
@@ -252,7 +253,61 @@ export default function HomeScreen() {
           </View>
         ))}
 
+        <View className="px-6 py-16 items-center justify-center flex-row flex-wrap">
+          <Text className="text-xl font-bold text-black">
+            Human First.{" "}
+          </Text>
+          <View className="bg-lime-300 px-2 py-1 rounded-md">
+            <Text className="text-xl font-bold text-black">
+              Powered by Real Data.
+            </Text>
+          </View>
+        </View>
+
+        {/* University section */}
+        <View className="px-6 py-16">
+          <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
+            <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
+              ACROSS CAMPUSES
+            </Text>
+          </View>
+          <Text className="text-2xl font-black text-center text-black mb-4">Empowering students across Canada</Text>
+
+        </View>
+
+        {/* Network section */}
+        <View className="px-6 py-16">
+          <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
+            <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
+              EMPLOYER NETWORK
+            </Text>
+          </View>
+          <Text className="text-2xl font-black text-center text-black mb-4">Leading employers across Canada</Text>
+
+        </View>
+
+        {/* Whos It's For section */}
+        <View className="px-6 py-16">
+          <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
+            <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
+              WHO IT'S FOR
+            </Text>
+          </View>
+          <Text className="text-2xl font-black text-center text-black mb-4">Built for every stage of your journey</Text>
+
+        </View>
+
         {/* Pricing Section */}
+        <View className="px-6 py-16">
+          <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
+            <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
+              PRICING
+            </Text>
+          </View>
+          <Text className="text-2xl font-black text-center text-black mb-4">Choose your career plan</Text>
+          <Text className="text-sm font-normal text-center text-gray-400 mb-4">Start free. Upgrade when you're ready to go deeper</Text>
+
+        </View>
         <View className="px-6 py-16">
           <Text className="text-3xl font-bold text-center mb-10">Choose your career plan</Text>
 
