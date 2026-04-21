@@ -191,6 +191,34 @@ export default function HomeScreen() {
     require('../assets/gigsup_resources/images.unsplash.com/24.jpg'),
   ];
 
+  // Targer Audiences
+  const targets = [
+    {
+      id: "High School",
+      icon: "🎓",
+      summary: "Explore what's possible",
+      desc: "Discover careers through your transcript and interests. Get guidance on what subjects, extracurriculars, and schools will get you where you wnat to go.",
+      points: ["Journaling + Transcript analysis", "Career exploration", "School requirements + Admissions plan"],
+      find: "Find your path"
+    },
+    {
+      id: "University",
+      icon: "📖",
+      summary: "Land your first role",
+      desc: "See what careers your degree unlocks. Match with real job postings, identify gaps, and connect with mentors who've been there.",
+      points: ["Resume + Transcript analysis", "Job matching based on degree", "Skill gap closing", "Mentor connections"],
+      find: "Find your 1st job"
+    },
+    {
+      id: "Mid-Career",
+      icon: "💼",
+      summary: "Own your next chapter",
+      desc: "Whether you're pivoting or advanding, track your growth, tell your story powerfully, and discover opportunities that match where you want to go.",
+      points: ["LinkedIn + Resume + Journaling analysis", "Track career porjects", "Education to build skill", "Story building"],
+      find: "Level up"
+    }
+  ]
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
@@ -506,7 +534,7 @@ export default function HomeScreen() {
           </Animated.View>
         </View>
 
-        {/* Whos It's For section */}
+        {/* Target Audience Section */}
         <View className="px-6 py-16">
           <View className="bg-lime-300 px-4 py-1 min-w-[120px] rounded-full mb-4 items-center justify-center self-center">
             <Text className="text-slate-900 text-base font-black uppercase" numberOfLines={1}>
@@ -514,7 +542,45 @@ export default function HomeScreen() {
             </Text>
           </View>
           <Text className="text-2xl font-black text-center text-black mb-4">Built for every stage of your journey</Text>
-
+          {targets.map((target, i) => (
+            <View
+              key={i}
+              className={`bg-white rounded-[16px] w-full p-5 shadow-sm border border-gray-100`}
+            >
+              <View className="px-4 py-1 min-w-[120px] rounded-full mb-4 self-start">
+                <Text className="text-slate-900 text-[30px] font-black uppercase " numberOfLines={1}>
+                  {target.icon}
+                </Text>
+              </View>
+              <Text className="text-slate-900 font-black text-2xl mb-4">
+                {target.id}
+              </Text>
+              <Text className="bg-lime-300 text-slate-900 rounded-[4px] px-2 py-1 font-black text-lg mb-4">
+                {target.summary}
+              </Text>
+              <Text
+                numberOfLines={4}
+                style={{ minHeight: 90 }}
+                className="text-gray-400 font-black text-base leading-6"
+              >
+                {target.desc}
+              </Text>
+              <View className="mb-8">
+                {target.points.map((point, index) => (
+                  <View key={index} className="flex-row items-center mb-3">
+                    <View className="w-1.5 h-1.5 rounded-full bg-lime-400 mr-3" />
+                    <Text className="text-gray-500 font-medium text-base">
+                      {point}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+              <TouchableOpacity className="bg-lime-300 px-6 py-4 rounded-xl flex-row items-center active:opacity-80">
+                <Text className="text-slate-900 font-black mr-2 text-lg">{target.find}</Text>
+                <ArrowRight size={20} color="#000000" />
+              </TouchableOpacity>
+            </View>
+          ))}
         </View>
 
         {/* Pricing Section */}
