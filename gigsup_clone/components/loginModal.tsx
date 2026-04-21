@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, Image, TextInput } from 'react-native';
 import { X, Mail, ChevronDown, ChevronUp, Eye, EyeOff } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
 
 interface LoginModalProps {
     isVisible: boolean;
@@ -8,6 +9,7 @@ interface LoginModalProps {
 }
 
 const LoginModal = ({ isVisible, onClose }: LoginModalProps) => {
+    const router = useRouter();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isEmailExpanded, setIsEmailExpanded] = useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -42,6 +44,10 @@ const LoginModal = ({ isVisible, onClose }: LoginModalProps) => {
         else {
             // Login Success -> go to dash board
             onClose();
+
+            setTimeout(() => {
+                router.replace('/dashboard');
+            }, 100);
         }
     };
 
