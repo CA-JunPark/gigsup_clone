@@ -163,7 +163,33 @@ export default function HomeScreen() {
     if (widthEmployer > 0) startAnim(scrollXEmployer, widthEmployer, 25000);
   }, [width1, width2, width3, widthEmployer]);
 
-
+  // Profiles
+  const profileImages = [
+    require('../assets/gigsup_resources/images.unsplash.com/1.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/2.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/3.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/4.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/5.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/6.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/7.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/8.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/9.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/10.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/11.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/12.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/13.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/14.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/15.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/16.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/17.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/18.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/19.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/20.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/21.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/22.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/23.jpg'),
+    require('../assets/gigsup_resources/images.unsplash.com/24.jpg'),
+  ];
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -414,6 +440,48 @@ export default function HomeScreen() {
         </View>
 
         {/* Network section */}
+        <View className="px-6 py-16 items-center justify-center">
+          <Text className="text-2xl font-black text-center text-black">Join the Network for Students</Text>
+          <Text className="text-lg font-bold text-center text-gray-400 mb-8">
+            We build Canada's student network {"\n"}
+            ecosystem. Gigsup connects you to {"\n"}
+            mentors, schools & employers within a growing career network ecosystem. All {"\n"}
+            aligned to your stengths & next move.
+          </Text>
+          <Text className="text-lg font-bold text-center text-gray-600 mb-4">
+            🎓 5% of our profits go directly to grants {"\n"}
+            helping community members complete {"\n"}
+            their studies.
+          </Text>
+          <TouchableOpacity className="bg-lime-300 px-7 py-4 rounded-xl flex-row items-center active:opacity-80">
+            <Text className="text-slate-900 font-black mr-2 text-lg" numberOfLines={1}>Join the Network</Text>
+            <ArrowRight size={20} color="#000000" />
+          </TouchableOpacity>
+        </View>
+
+        <View className="px-4 py-8 items-center justify-center bg-gray-50/50">
+          <View className="flex-row flex-wrap justify-center gap-2 max-w-[190px]">
+            {profileImages.slice(0, 20).map((img, index) => (
+              <View
+                key={index}
+                className="w-10 h-10 rounded-full bg-white shadow-sm border border-white overflow-hidden"
+                style={{
+                  elevation: 2,
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 1 },
+                  shadowOpacity: 0.08,
+                  shadowRadius: 2,
+                }}
+              >
+                <Image
+                  source={img}
+                  className="w-full h-full"
+                  resizeMode="cover"
+                />
+              </View>
+            ))}
+          </View>
+        </View>
 
         {/* Employer section */}
         <View className="px-6 py-16">
