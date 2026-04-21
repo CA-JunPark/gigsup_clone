@@ -219,6 +219,9 @@ export default function HomeScreen() {
     }
   ]
 
+  // Pricing
+  const [billingCycle, setBillingCycle] = useState('Monthly');
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
@@ -592,32 +595,162 @@ export default function HomeScreen() {
           </View>
           <Text className="text-2xl font-black text-center text-black mb-4">Choose your career plan</Text>
           <Text className="text-sm font-normal text-center text-gray-400 mb-4">Start free. Upgrade when you're ready to go deeper</Text>
+          <View className="bg-gray-100 p-1.5 rounded-full flex-row items-center">
 
+            {/* Monthly Option */}
+            <TouchableOpacity
+              onPress={() => setBillingCycle('Monthly')}
+              className={`${billingCycle === 'Monthly' ? 'bg-lime-300' : ''} px-8 py-2.5 rounded-full`}
+            >
+              <Text className="text-black font-bold text-[16px]">Monthly</Text>
+            </TouchableOpacity>
+
+            {/* Annual Option */}
+            <TouchableOpacity
+              onPress={() => setBillingCycle('Annual')}
+              className={`${billingCycle === 'Annual' ? 'bg-lime-300' : ''} px-8 py-2.5 rounded-full flex-row items-center`}
+            >
+              <Text className="text-black font-bold text-[16px] mr-2">Annual</Text>
+
+              {/* Save 20% Badge */}
+              <View className="bg-black px-3 py-1 rounded-full">
+                <Text className="text-white text-[11px] font-black">Save 20%</Text>
+              </View>
+            </TouchableOpacity>
+
+          </View>
         </View>
         <View className="px-6 py-16">
-          <Text className="text-3xl font-bold text-center mb-10">Choose your career plan</Text>
+          {/* The Seed Card */}
+          <View className="bg-white border border-gray-200 p-8 rounded-3xl mb-8">
+            <Text className="text-slate-900 font-black text-3xl mb-2">The Seed</Text>
+            <Text className="text-gray-400 text-[13px] font-bold mb-8 uppercase tracking-widest">
+              GOAL: SEE WHERE YOU MIGHT FIT
+            </Text>
 
-          {/* The Squeeze Card */}
-          <View className="bg-white border-2 border-blue-600 p-8 rounded-3xl mb-8 relative">
-            <View className="bg-blue-600 absolute -top-4 left-1/2 -ml-12 px-4 py-1 rounded-full">
-              <Text className="text-white text-xs font-bold uppercase">Popular</Text>
+            <View className="flex-row items-baseline mb-2">
+              <Text className="text-slate-900 text-5xl font-black">$0</Text>
+              <Text className="text-gray-400 text-xl font-bold ml-1" numberOfLines={1}>/ forever</Text>
             </View>
-            <Text className="text-2xl font-bold mb-2">The Squeeze</Text>
-            <Text className="text-gray-500 text-sm mb-4">Goal: Turn insight into direction</Text>
-            <View className="flex-row items-end mb-6">
-              <Text className="text-4xl font-bold">$10</Text>
-              <Text className="text-gray-500 mb-1 ml-1">/month</Text>
-            </View>
-            <View className="mb-8">
-              {['Full strengths profile', 'Full mentor matching', 'Personalized job matching'].map((feature, i) => (
-                <View key={i} className="flex-row items-center mt-3">
-                  <Check size={18} color="#2563eb" />
-                  <Text className="ml-2 text-gray-700">{feature}</Text>
+
+            <Text className="text-gray-400 text-[15px] mb-10 font-medium">
+              No credit card required
+            </Text>
+
+            {/* Features List */}
+            <View className="mb-10">
+              {[
+                'Core strengths snapshot',
+                'Top 5 career matches',
+                'Community profile & interaction',
+                'Limited mentor visibility',
+                'Limited education visibility',
+                'Full job search',
+                'Full career profile search'
+              ].map((feature, i) => (
+                <View key={i} className="flex-row items-start mb-5">
+                  <View className="bg-lime-300 p-1 rounded-full mr-4 mt-1">
+                    <Check size={12} color="#000000" strokeWidth={4} />
+                  </View>
+                  <Text className="text-gray-500 text-[16px] font-medium leading-6 flex-1">
+                    {feature}
+                  </Text>
                 </View>
               ))}
             </View>
-            <TouchableOpacity className="bg-blue-600 py-4 rounded-xl items-center shadow-lg active:scale-95">
-              <Text className="text-white font-bold text-lg">Get The Squeeze</Text>
+            <TouchableOpacity className="border-2 border-slate-700 py-5 rounded-2xl items-center active:opacity-80">
+              <Text className="text-slate-900 font-black text-lg">Get Started Free</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* The Squeeze Card */}
+          <View className="bg-white border-2 border-lime-300 p-8 rounded-3xl mb-8 relative">
+            {/* Most Popular Badge */}
+            <View className="bg-lime-300 absolute -top-4 left-1/2 -ml-16 px-6 py-1.5 rounded-full shadow-sm">
+              <Text className="text-slate-900 text-[10px] font-black uppercase tracking-[0.2em]">
+                Most Popular
+              </Text>
+            </View>
+
+            <Text className="text-slate-900 font-black text-3xl mb-2">The Squeeze</Text>
+            <Text className="text-gray-400 text-[13px] font-bold mb-8 uppercase tracking-widest">
+              GOAL: TURN INSIGHT INTO DIRECTION
+            </Text>
+
+            <View className="flex-row items-baseline mb-2">
+              <Text className="text-slate-900 text-5xl font-black">${billingCycle === 'Monthly' ? '10' : '8'}</Text>
+              <Text className="text-gray-400 text-xl font-bold ml-1">/month</Text>
+            </View>
+
+            <Text className="text-gray-400 text-[15px] mb-10 font-medium">
+              Free for 30 days, then billed monthly
+            </Text>
+
+            {/* Features List */}
+            <View className="mb-10">
+              {[
+                'Everything in The Seed',
+                'Full strengths profile',
+                'Full VISI assessment access',
+                'All career matches',
+                'Full education pathways / post-secondary admission plan',
+                'Full mentor matching',
+                'Full personalized job matching'
+              ].map((feature, i) => (
+                <View key={i} className="flex-row items-start mb-5">
+                  <View className="bg-lime-300 p-1 rounded-full mr-4 mt-1">
+                    <Check size={12} color="#000000" strokeWidth={4} />
+                  </View>
+                  <Text className="text-gray-500 text-[16px] font-medium leading-6 flex-1">
+                    {feature}
+                  </Text>
+                </View>
+              ))}
+            </View>
+
+            <TouchableOpacity className="bg-lime-300 py-5 rounded-2xl items-center active:opacity-80 shadow-sm">
+              <Text className="text-slate-900 font-black text-lg">Get The Squeeze</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* The Juice Card */}
+          <View className="bg-white border border-gray-200 p-8 rounded-3xl mb-8">
+            <Text className="text-slate-900 font-black text-3xl mb-2">The Juice</Text>
+            <Text className="text-gray-400 text-[13px] font-bold mb-8 uppercase tracking-widest">
+              GOAL: EXECUTE WITH ADVANTAGE
+            </Text>
+
+            <View className="flex-row items-baseline mb-2">
+              <Text className="text-slate-900 text-5xl font-black">${billingCycle === 'Monthly' ? '50' : '40'}</Text>
+              <Text className="text-gray-400 text-xl font-bold ml-1">/month</Text>
+            </View>
+
+            <Text className="text-gray-400 text-[15px] mb-10 font-medium">
+              Billed annually
+            </Text>
+
+            {/* Features List */}
+            <View className="mb-10">
+              {[
+                'Everything in The Squeeze',
+                'Storytelling / profile optimization',
+                'Skill gap matching',
+                'Resume enhancement',
+                'Interview prep AI coach',
+                'Targeted opportunity alerts'
+              ].map((feature, i) => (
+                <View key={i} className="flex-row items-start mb-5">
+                  <View className="bg-lime-300 p-1 rounded-full mr-4 mt-1">
+                    <Check size={12} color="#000000" strokeWidth={4} />
+                  </View>
+                  <Text className="text-gray-500 text-[16px] font-medium leading-6 flex-1">
+                    {feature}
+                  </Text>
+                </View>
+              ))}
+            </View>
+            <TouchableOpacity className="border-2 border-slate-700 py-5 rounded-2xl items-center active:opacity-80">
+              <Text className="text-slate-900 font-black text-lg">Get The Juice</Text>
             </TouchableOpacity>
           </View>
         </View>
