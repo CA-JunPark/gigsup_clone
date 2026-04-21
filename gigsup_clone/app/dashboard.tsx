@@ -127,6 +127,103 @@ export default function DashboardScreen() {
                                 <Text className="text-slate-400 font-bold text-sm">All steps completed</Text>
                             </View>
                         </View>
+                    </View>
+                </View>
+
+                {/* Match Section */}
+                <View className="px-4 pb-10 bg-gray-200">
+                    <View className="bg-white rounded-[40px] p-8 shadow-sm border border-slate-50">
+
+                        {/* Header: Icon & Title */}
+                        <View className="items-center mb-10 relative">
+                            <TouchableOpacity className="absolute right-0 top-0 w-8 h-8 bg-slate-50 rounded-full items-center justify-center">
+                                <ChevronRight size={18} color="#A3E635" />
+                            </TouchableOpacity>
+
+                            <View className="w-16 h-16 bg-lime-300 rounded-full items-center justify-center mb-6">
+                                <ShieldCheck size={30} color="#000000" />
+                            </View>
+                            <Text className="text-slate-900 text-4xl font-black mb-2">MATCH</Text>
+                            <Text className="text-gray-400 text-md font-medium text-center">
+                                Reveal careers that align with your profile
+                            </Text>
+                        </View>
+
+                        {/* Radar Chart Card */}
+                        <View className="bg-slate-50/50 rounded-3xl p-6 mb-10 items-center">
+                            <Text className="text-slate-500 font-bold text-xs mb-4">Values</Text>
+
+                            {/* Radar Chart Mockup (SVG) */}
+                            <View className="w-48 h-48 items-center justify-center relative">
+                                <Text className="absolute left-[-20] top-1/2 text-[10px] font-bold text-slate-500">Identity</Text>
+                                <Text className="absolute right-[-20] top-1/2 text-[10px] font-bold text-slate-500">Interests</Text>
+                                <Text className="absolute bottom-[-10] text-[10px] font-bold text-slate-500">Skills</Text>
+
+                                <Svg width="140" height="140" viewBox="0 0 100 100">
+                                    <Polygon points="50,10 90,50 50,90 10,50" fill="none" stroke="#E2E8F0" strokeWidth="1" />
+                                    <Line x1="50" y1="10" x2="50" y2="90" stroke="#E2E8F0" strokeWidth="1" />
+                                    <Line x1="10" y1="50" x2="90" y2="50" stroke="#E2E8F0" strokeWidth="1" />
+                                    {/* Active Data Area */}
+                                    <Polygon points="50,20 85,50 50,90 15,50" fill="#A3E635" fillOpacity="0.2" stroke="#A3E635" strokeWidth="2" />
+                                </Svg>
+                            </View>
+
+                            {/* Radar Chart Stats */}
+                            <View className="flex-row flex-wrap justify-between w-full mt-8">
+                                {[
+                                    { label: 'Values', val: '86%', color: 'text-lime-400' },
+                                    { label: 'Interests', val: '85%', color: 'text-lime-400' },
+                                    { label: 'Skills', val: '100%', color: 'text-lime-300' },
+                                    { label: 'Identity', val: '100%', color: 'text-lime-300' },
+                                ].map((stat, i) => (
+                                    <View key={i} className="w-[45%] flex-row justify-between mb-2">
+                                        <Text className="text-slate-400 font-bold text-sm">{stat.label}</Text>
+                                        <Text className={`${stat.color} font-black text-sm`}>{stat.val}</Text>
+                                    </View>
+                                ))}
+                            </View>
+                        </View>
+
+                        {/* Saved Careers Section */}
+                        <View className="items-center mb-8">
+                            <Text className="text-slate-900 text-2xl font-black mb-2">Your Saved Careers</Text>
+                            <Text className="text-gray-400 text-base font-medium">Tap a career to set it as your focus</Text>
+                        </View>
+
+                        {/* Career Cards */}
+                        <View className="space-y-4">
+                            {/* Card 1: Focused */}
+                            <View className="bg-white border-2 border-lime-400 rounded-3xl p-6 flex-row items-center mb-4 shadow-sm">
+                                <View className="w-14 h-14 bg-lime-200 rounded-full items-center justify-center mr-4">
+                                    <Text className="text-slate-900 font-black text-sm">49%</Text>
+                                </View>
+                                <View className="flex-1">
+                                    <Text className="text-slate-800 font-black text-lg leading-6">Computer systems developers and programmers</Text>
+                                    <Text className="text-slate-400 text-xs mt-1">$61,297 - $78,811 · Very Good growth</Text>
+                                </View>
+                                <Check size={20} color="#A3E635" strokeWidth={3} />
+                            </View>
+
+                            {/* Card 2: Regular */}
+                            <View className="bg-white border border-slate-100 rounded-3xl p-6 flex-row items-center mb-6 shadow-sm">
+                                <View className="w-14 h-14 bg-lime-100 rounded-full items-center justify-center mr-4">
+                                    <Text className="text-slate-900 font-black text-sm">56%</Text>
+                                </View>
+                                <View className="flex-1">
+                                    <Text className="text-slate-800 font-black text-lg leading-6">Software developers and programmers</Text>
+                                    <Text className="text-slate-400 text-xs mt-1">$69,087 - $88,826 · Excellent growth</Text>
+                                </View>
+                                <TouchableOpacity className="bg-slate-50 px-4 py-2 rounded-full">
+                                    <Text className="text-slate-400 font-bold text-xs">Set Focus</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+                        {/* Report Button */}
+                        <TouchableOpacity className="bg-lime-200/50 py-5 rounded-2xl flex-row items-center justify-center mt-4">
+                            <Flag size={18} color="#64748B" className="mr-2" />
+                            <Text className="text-slate-600 font-bold text-base ml-2">Missing a career? Report it</Text>
+                        </TouchableOpacity>
 
                     </View>
                 </View>
